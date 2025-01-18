@@ -46,7 +46,7 @@ class MainActivity : ComponentActivity() {
     @SuppressLint("RestrictedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+       // enableEdgeToEdge()
 
         val isFirstLogin = localRepo.getData("isFirstLogin")?.toBoolean() ?: true
 

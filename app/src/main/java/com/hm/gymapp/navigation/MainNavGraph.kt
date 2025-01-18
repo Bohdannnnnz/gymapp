@@ -24,11 +24,11 @@ fun NavGraphBuilder.getMainGraph(
     composable<Router.Welcome> {
         WelcomeScreen(
             onLogin = {
-               if (isFirstTime) {
-                   navController.navigateTo(Router.Survey)
-               } else {
-                   navController.navigateTo(Router.Home)
-               }
+                if (isFirstTime) {
+                    navController.navigateTo(Router.Survey)
+                } else {
+                    navController.navigateTo(Router.Home)
+                }
             },
         )
     }
@@ -51,16 +51,19 @@ fun NavGraphBuilder.getMainGraph(
 
     composable<Router.Training> {
         TrainingScreen(
-            onClick={navController.navigateTo(Router.Exercises)}
+            onClick = { navController.navigateTo(Router.Exercises) }
         )
     }
 
     composable<Router.Exercises> {
-        ExercisesScreen(onClick={navController.navigateTo(Router.ExercisesDetails)})
+        ExercisesScreen(
+            onClick = { navController.navigateTo(Router.ExercisesDetails) },
+            onBack = { navController.popBackStack() }
+        )
     }
 
     composable<Router.ExercisesDetails> {
-        ExerciseDetailScreen()
+        ExerciseDetailScreen(onBack = { navController.popBackStack() })
     }
 
 
