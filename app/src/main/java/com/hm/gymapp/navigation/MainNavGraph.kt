@@ -2,6 +2,8 @@ package com.hm.gymapp.navigation
 
 import ExerciseDetailScreen
 import ExercisesScreen
+import ScheduleScreen
+import SettingsScreen
 import TrainingScreen
 import WelcomeScreen
 import androidx.navigation.NavGraphBuilder
@@ -40,11 +42,11 @@ fun NavGraphBuilder.getMainGraph(
     }
 
     composable<Router.Settings> {
-        BakingScreen()
+        SettingsScreen()
     }
 
     composable<Router.Schedule> {
-        BakingScreen()
+        ScheduleScreen()
     }
 
     composable<Router.Training> {
