@@ -2,6 +2,8 @@ package com.hm.gymapp.navigation
 
 import ExerciseDetailScreen
 import ExercisesScreen
+import ScheduleScreen
+import SettingsScreen
 import TrainingScreen
 import WelcomeScreen
 import androidx.navigation.NavGraphBuilder
@@ -23,11 +25,11 @@ fun NavGraphBuilder.getMainGraph(
     composable<Router.Welcome> {
         WelcomeScreen(
             onLogin = {
-               if (isFirstTime) {
-                   navController.navigateTo(Router.Survey)
-               } else {
-                   navController.navigateTo(Router.Home)
-               }
+                if (isFirstTime) {
+                    navController.navigateTo(Router.Survey)
+                } else {
+                    navController.navigateTo(Router.Home)
+                }
             },
         )
     }
@@ -41,25 +43,28 @@ fun NavGraphBuilder.getMainGraph(
     }
 
     composable<Router.Settings> {
-        BakingScreen()
+        SettingsScreen()
     }
 
     composable<Router.Schedule> {
-        BakingScreen()
+        ScheduleScreen()
     }
 
     composable<Router.Training> {
         TrainingScreen(
-            onClick={navController.navigateTo(Router.Exercises)}
+            onClick = { navController.navigateTo(Router.Exercises) }
         )
     }
 
     composable<Router.Exercises> {
-        ExercisesScreen(onClick={navController.navigateTo(Router.ExercisesDetails)})
+        ExercisesScreen(
+            onClick = { navController.navigateTo(Router.ExercisesDetails) },
+            onBack = { navController.popBackStack() }
+        )
     }
 
     composable<Router.ExercisesDetails> {
-        ExerciseDetailScreen()
+        ExerciseDetailScreen(onBack = { navController.popBackStack() })
     }
 
 

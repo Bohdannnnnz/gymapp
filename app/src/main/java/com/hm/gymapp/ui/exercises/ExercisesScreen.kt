@@ -3,10 +3,19 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.Alignment
@@ -14,7 +23,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import com.hm.gymapp.R
+import com.hm.gymapp.navigation.Router
+import com.hm.gymapp.navigation.navigateTo
 
 data class Exercise(
     val name: String,
@@ -25,29 +37,49 @@ data class Exercise(
     val tips: String
 )
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ExercisesScreen(onClick: () -> Unit) {
+fun ExercisesScreen(onClick: () -> Unit, onBack: () -> Unit) {
     // Lista 5 ćwiczeń
     val exercises = getSampleExercises()
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            text = "Exercises",
-            style = MaterialTheme.typography.headlineSmall,
-            modifier = Modifier.padding(bottom = 24.dp),
-            fontSize = 24.sp
-        )
-
-        LazyColumn(
-            modifier = Modifier.fillMaxSize()
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {
+                    Row{
+                        Spacer(Modifier.width(16.dp))
+                        Text(
+                            text = "Exercises",
+                            style = MaterialTheme.typography.headlineSmall,
+                            fontSize = 24.sp,
+                            textAlign = TextAlign.Center
+                        )
+                    }
+                },
+                navigationIcon = {
+                    Row {
+                        Spacer(Modifier.width(16.dp))
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null, modifier = Modifier.clickable{
+                            onBack()
+                        })
+                    }
+                }
+            )
+        }
+    ) { padding ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(padding)
+                .padding(horizontal = 16.dp),
         ) {
-            items(exercises) { exercise ->
-                ExerciseCard(exercise = exercise, onClick = onClick)
+            LazyColumn(
+                modifier = Modifier.fillMaxSize()
+            ) {
+                items(exercises) { exercise ->
+                    ExerciseCard(exercise = exercise, onClick = onClick)
+                }
             }
         }
     }
