@@ -185,6 +185,29 @@ fun SurveyScreen(
                                 )
                             }
                         }
+                        // Dynamiczny obraz SVG w zależności od wartości bodyFat
+                        val svgResId = when (bodyFat.toInt()) {
+                            in 0..25 -> R.drawable.skin
+                            in 26..50 -> R.drawable.body_builder
+                            in 51..75 -> R.drawable.fat
+                            else -> R.drawable.ultra_fat
+                        }
+
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(150.dp)
+                                .padding(vertical = 16.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Icon(
+                                painter = painterResource(id = svgResId),
+                                contentDescription = "Body Fat Illustration",
+                                modifier = Modifier.size(120.dp),
+                                tint = Color.Unspecified // Zachowanie oryginalnych kolorów SVG
+                            )
+                        }
+
                         Text("Body Fat")
                         Row(
                             modifier = Modifier.fillMaxWidth(),
@@ -201,6 +224,7 @@ fun SurveyScreen(
                                             .toFloat()
                                 },
                                 valueRange = 0f..100f,
+                                steps = 99,
                                 modifier = Modifier.fillMaxWidth()
                             )
                             Spacer(modifier = Modifier.width(8.dp))
