@@ -9,6 +9,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.hm.gymapp.BakingScreen
+import com.hm.gymapp.ui.home.HomeScreen
 import com.hm.gymapp.ui.survey.SurveyScreen
 
 fun NavGraphBuilder.getMainGraph(
@@ -16,7 +17,7 @@ fun NavGraphBuilder.getMainGraph(
     isFirstTime: Boolean
 ) {
     composable<Router.Home> {
-        BakingScreen()
+        HomeScreen()
     }
 
     composable<Router.Welcome> {

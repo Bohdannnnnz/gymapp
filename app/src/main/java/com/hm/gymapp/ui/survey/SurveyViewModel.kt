@@ -15,7 +15,7 @@ class SurveyViewModel @Inject constructor(
 
     fun saveUser(user: User) {
         viewModelScope.launch {
-            userDao.insertUser(user)
+            userDao.upsertUser(user)
         }
     }
 }
