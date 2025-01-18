@@ -12,7 +12,9 @@ import androidx.compose.ui.res.painterResource
 import com.hm.gymapp.R
 
 @Composable
-fun WelcomeScreen() {
+fun WelcomeScreen(
+    onLogin: () -> Unit,
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -34,16 +36,10 @@ fun WelcomeScreen() {
             modifier = Modifier.fillMaxWidth()
         ) {
             Button(
-                onClick = { /* Akcja Log In */ },
+                onClick = onLogin,
                 modifier = Modifier.fillMaxWidth().height(56.dp) // Powiększenie przycisku
             ) {
-                Text("Log In", fontSize = 18.sp)
-            }
-            Button(
-                onClick = { /* Akcja Sign In */ },
-                modifier = Modifier.fillMaxWidth().height(56.dp) // Powiększenie przycisku
-            ) {
-                Text("Sign In", fontSize = 18.sp)
+                Text("Dive in!", fontSize = 18.sp)
             }
         }
     }

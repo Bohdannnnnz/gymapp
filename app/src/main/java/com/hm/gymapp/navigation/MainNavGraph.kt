@@ -6,20 +6,30 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.hm.gymapp.BakingScreen
+import com.hm.gymapp.ui.survey.SurveyScreen
 
 fun NavGraphBuilder.getMainGraph(
-    navController: NavHostController
+    navController: NavHostController,
+    isFirstTime: Boolean
 ) {
     composable<Router.Home> {
-        WelcomeScreen()
+        BakingScreen()
     }
 
     composable<Router.Welcome> {
-        BakingScreen()
+        WelcomeScreen(
+            onLogin = {
+               if (isFirstTime) {
+                   navController.navigateTo(Router.Survey)
+               } else {
+                   navController.navigateTo(Router.Home)
+               }
+            },
+        )
     }
 
     composable<Router.Survey> {
-        BakingScreen()
+        SurveyScreen()
     }
 }
 
