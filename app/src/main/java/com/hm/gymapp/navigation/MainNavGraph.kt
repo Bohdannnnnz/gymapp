@@ -1,5 +1,6 @@
 package com.hm.gymapp.navigation
 
+import WelcomeScreen
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
@@ -10,7 +11,7 @@ fun NavGraphBuilder.getMainGraph(
     navController: NavHostController
 ) {
     composable<Router.Home> {
-        BakingScreen()
+        WelcomeScreen()
     }
 
     composable<Router.Welcome> {
