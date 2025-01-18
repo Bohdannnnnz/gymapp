@@ -6,4 +6,10 @@ import kotlinx.serialization.Serializable
 sealed class Router {
     @Serializable
     data object Home : Router()
+
+    @Serializable
+    data object Welcome : Router()
+
+    @Serializable
+    data object Survey : Router()
 }

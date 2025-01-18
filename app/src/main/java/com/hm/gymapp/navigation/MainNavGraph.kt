@@ -12,4 +12,19 @@ fun NavGraphBuilder.getMainGraph(
     composable<Router.Home> {
         BakingScreen()
     }
+
+    composable<Router.Welcome> {
+        BakingScreen()
+    }
+
+    composable<Router.Survey> {
+        BakingScreen()
+    }
+}
+
+
+fun NavHostController.navigateTo(router: Router) {
+    this.navigate(router) {
+        launchSingleTop = true
+    }
 }
