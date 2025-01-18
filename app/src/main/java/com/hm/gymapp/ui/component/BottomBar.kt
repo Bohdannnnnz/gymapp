@@ -26,20 +26,14 @@ fun BottomBar(bottomNavItems: List<BottomNavItem>, navController: NavController)
             val route = item.route.toString()
             NavigationBarItem(
                 selected = currentRoute?.contains(route) ?: false,
-                onClick = { navController.navigate(item.route) {
+                onClick = { navController.navigate(item) {
                     launchSingleTop = true
                     popUpTo(0)
                 } },
-                label = {
-                    Text(
-                        text = item.name,
-                        fontWeight = FontWeight.SemiBold,
-                    )
-                },
                 icon = {
                     Icon(
                         imageVector = item.icon,
-                        contentDescription = "${item.name} Icon",
+                        contentDescription = null
                     )
                 }
             )
@@ -49,7 +43,6 @@ fun BottomBar(bottomNavItems: List<BottomNavItem>, navController: NavController)
 
 
 data class BottomNavItem(
-    val name: String,
     val route: Router,
     val icon: ImageVector,
 )

@@ -19,6 +19,4 @@ class LocalRepositoryImpl @Inject constructor(
     override fun removeData(key: String) {
         sharedPreferences.edit().remove(key).apply()
     }
-
-
 }
